@@ -1,46 +1,37 @@
 package ru.geekbrains.hw7;
 
-public class Cats extends Plate {
-    String name;
-    static String hunger;
-    static int appetite;
-    static boolean satiety;
+public class Cats {
+    private String name;
+    private int appetite;
+    int satiety;
+    private boolean hungry;
 
-    public Cats(String name, int appetite, boolean satiety, String hunger) {
-        super();
+    public Cats(String name) {
         this.name = name;
-        this.hunger = hunger;
-        this.appetite = appetite; // аппетит
-        this.satiety = satiety;   // сытость кошки
-
+        this.appetite = 5;
+        this.hungry = true;
     }
 
-    public void hungry() {
-        if (satiety) {
-            hunger = "hungry";
-        }
-        if (!satiety) {
-            hunger = "wel-feed";
-        }
+    public void setHungry(boolean hungry) {
+        this.hungry = hungry;
     }
 
-    public static void feedTheCats() {
-        do {
-            if (appetite >= currentVolume) {
-                volume++;
-                System.out.println("кому то не хватило, надо пополнить тарелку.");
-                System.out.println("Наполняем тарелку");
-            }
-            if (appetite < currentVolume) {
-                currentVolume = appetite;
-                System.out.println(" поела");
-            }
-            break;
-        } while (Cats.satiety);
 
+    public int getAppetite() {
+        return appetite;
     }
 
     public void info() {
-        System.out.println(name + " " + "аппетит: " + appetite + "%" + " " + " Сытость: " + hunger);
+        System.out.println(name + " голод: " + hungry);
     }
+
+    public void catEat(Plate plate){
+        if(plate.getFood() <= 0 && appetite != 0){
+            hungry = true;
+            return;
+        }
+        plate.decreaseFood(appetite);
+        hungry = false;
+    }
+
 }

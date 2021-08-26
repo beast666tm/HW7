@@ -1,28 +1,22 @@
 package ru.geekbrains.hw7;
 
 public class Plate {
-    static int volume; // в тарелке максимум
-    static int currentVolume; // сейчас в тарелке
+    private int food;
 
-    Plate(int volume, int currentVolume){
-        this.volume = volume;
-        this.currentVolume = currentVolume;
+
+    public Plate(int food) {
+        this.food = food;
     }
 
-    public Plate() {
-
+    public int getFood() {
+        return food;
+    }
+    public void decreaseFood(int amount){
+        food -= amount;
     }
 
     public void info() {
-        System.out.println("сейчас в тарелке:" + currentVolume + "%" + " в тарелке максимум:" + volume + "%");
-    }
-
-    public void isValidVolume(){
-        if (volume < 0) {
-            volume = 0;
-        } if (volume > currentVolume){
-            volume = currentVolume;
-        }
+        System.out.printf("В тарелке Еды: %d \n", food);
     }
 
 }
